@@ -1,34 +1,24 @@
-% pca experiment
-% clear all
-clear all, close all
-% load data
-load ../../data/MNIST.mat
+[~, I1] =sort(Train_labels);
+[~, I2] =sort(Test_labels);
+Train = Train_images(:,I1);
+Test = Test_images(:,I2);
+Label = Label(I1);
+GroundTruth = GroundTruth(I2);
+for i = 0:9
+Traindata(:, (i*600+1):(i*600+600)) = Train(:, (i*6000+1):(i*6000+600));
+Testdata(:,(i*100+1):(i*100+100)) = Test(:, (i*1000+1):(i*1000+100));
+Labels((i*600+1):(i*600+600)) = Label((i*6000+1):(i*6000+600));
+Truth((i*100+1):(i*100+100)) = GroundTruth((i*1000+1):(i*1000+100));
+end
+Train = Traindata;
+Test = Testdata;
+Label = Labels;
 
-k = 40;% knn classifier
-
-% read training data and sample
-tic
-Train = Train_images';
-Label = Train_labels';
-toc
-
-% read test data
-tic
-Test = Test_images;
-GroundTruth = Test_labels;
-toc
-
-%% Feature selection
 %% HOG
 tic
-Train = Hog_digit(Train,28,28);
-Test = Hog_digit(Test,28,28);
+Train = Hog_digit(Train,28,28)';
+Test = Hog_digit(Test,28,28)';
 toc
-%% SIFT
-
-
-
-
 %% PCA
 tic
 k = 40;
@@ -42,12 +32,12 @@ toc
 
 
 %% LLE 
-% tic
-% [Y, Memb, ~, Sigma, ~] = lle([Train, Test], 'k', 7, 'dim', k);
-% toc
-% 
-% Train_low_lle = Y(:, 1:6000);
-% Test_low_lle = Y(:, 6001:end);
+tic
+[Y, Memb, ~, Sigma, ~] = lle([Train, Test], 'k', 7, 'dim', k);
+toc
+
+Train_low_lle = Y(:, 1:6000);
+Test_low_lle = Y(:, 6001:end);
 
 %% KPCA
 tic
@@ -106,16 +96,16 @@ tic
 toc
 
 %% kNN
-% % training
-% tic
-% %k = 7;
-% KNNMdl_lle = fitcknn(Train_low_lle', Label', 'Numneighbors', k, 'Standardize', 1);
-% toc
-% 
-% % testing
-% tic
-% [predictlabel_lle, score_lle, cost_lle] = predict(KNNMdl_lle, Test_low_lle');
-% toc
+% training
+tic
+%k = 7;
+KNNMdl_lle = fitcknn(Train_low_lle', Label', 'Numneighbors', k, 'Standardize', 1);
+toc
+
+% testing
+tic
+[predictlabel_lle, score_lle, cost_lle] = predict(KNNMdl_lle, Test_low_lle');
+toc
 %% KNN
 
 % training
