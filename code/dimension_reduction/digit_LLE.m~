@@ -20,29 +20,11 @@ k = 40;
 d = 40;
 svds_flag = true;
 dist = 'euclidean';
-fprintf('LLE Processing... \n')
-tic
 [Y, Memb, ~, sigmaMemb, ~] = lle([Train, Test], 'k', k, ...
     'distance', dist, 'dim', d, 'svds', svds_flag);
-toc
 
 Train_low_lle = Y(:, 1:60000);
 Test_low_lle = Y(:, 60001:end);
-
-%% kNN - LLE
-fprintf('kNN after LLE... \n');
-% training
-fprintf('Training... \n');
-tic
-%k = 7;
-KNNMdl_lle = fitcknn(Train_low_lle', Label', 'Numneighbors', k, 'Standardize', 1);
-toc
-
-% testing
-fprintf('Testing... \n');
-tic
-[predictlabel_lle, score_lle, cost_lle] = predict(KNNMdl_lle, Test_low_lle');
-toc
 
 fprintf( '\n***** WORKSPACE STORAGE *****\n\n' )
 
