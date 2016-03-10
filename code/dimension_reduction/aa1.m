@@ -1,20 +1,27 @@
+clear; close all
+load('./../../data/MNIST.mat');
+
+
 [~, I1] =sort(Train_labels);
 [~, I2] =sort(Test_labels);
 Train = Train_images(:,I1);
 Test = Test_images(:,I2);
-Label = Label(I1);
-GroundTruth = GroundTruth(I2);
+Label = Train_labels(I1);
+GroundTruth = Test_labels(I2);
+
 for i = 0:9
 Traindata(:, (i*600+1):(i*600+600)) = Train(:, (i*6000+1):(i*6000+600));
 Testdata(:,(i*100+1):(i*100+100)) = Test(:, (i*1000+1):(i*1000+100));
 Labels((i*600+1):(i*600+600)) = Label((i*6000+1):(i*6000+600));
 Truth((i*100+1):(i*100+100)) = GroundTruth((i*1000+1):(i*1000+100));
 end
+
 Train = Traindata;
 Test = Testdata;
 Label = Labels;
 
 %% HOG
+fprintf('HOG')
 tic
 Train = Hog_digit(Train,28,28)';
 Test = Hog_digit(Test,28,28)';
@@ -22,6 +29,7 @@ toc
 %% PCA
 tic
 k = 40;
+fprintf('PCA process');
 [V, ~, ~] = pca(Train', 'Centered', true);
 Train_low = compress(Train', V, mean(Train', 1), k);
 toc
@@ -32,8 +40,11 @@ toc
 
 
 %% LLE 
+lle_k = 7;
+lle_dim = 40;
+fprintf('LLE process');
 tic
-[Y, Memb, ~, Sigma, ~] = lle([Train, Test], 'k', 7, 'dim', k);
+[Y, Memb, ~, Sigma, ~] = lle([Train, Test], 'k', lle_k, 'dim', lle_dim, 'svds', true);
 toc
 
 Train_low_lle = Y(:, 1:6000);
@@ -70,7 +81,7 @@ toc
 % Test_low_ica = A*T*(Test-repmat(mu,1,size(Test,2)));
 % toc
 
-%% kNN
+%% kNN -ORIGINAL SPACE
 % training
 tic
 k = 5;
@@ -83,7 +94,7 @@ tic
 toc
 
 
-%% kNN
+%% kNN -PCA
 % training
 tic
 %k = 7;
@@ -95,7 +106,7 @@ tic
 [predictlabel_pca, score, cost] = predict(KNNMdl, Test_low);
 toc
 
-%% kNN
+%% kNN -LLE
 % training
 tic
 %k = 7;
@@ -145,4 +156,4 @@ tic
 [predictlabel_gaussian, score, cost] = predict(KNNMdl, Test_low_gaussian);
 toc
 
-
+% 
