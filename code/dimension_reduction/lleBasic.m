@@ -138,9 +138,9 @@ function [Y, sigmaMemb] = lleEncoding( Memb, dimEnc )
     [sigmaMemb, idx] = sort( sigmaMemb, 'ascend' );
     Y = Y(:,idx);
     
-    % % smallest singular value is 0; remove it and the corresponding vector
-    % Y(:,1)       = [];
-    % sigmaMemb(1) = [];
+    % smallest singular value is 0; remove it and the corresponding vector
+    Y(:,1)       = [];
+    sigmaMemb(1) = [];
     
     % transpose to [D-by-N]
     Y = Y.';
