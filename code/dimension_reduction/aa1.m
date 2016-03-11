@@ -16,16 +16,35 @@ Labels((i*600+1):(i*600+600)) = Label((i*6000+1):(i*6000+600));
 Truth((i*100+1):(i*100+100)) = GroundTruth((i*1000+1):(i*1000+100));
 end
 
-Train = Traindata;
-Test = Testdata;
+
+
+%% NORMALIZATION
+for i = 1: length(Labels)
+    temp_img = Traindata(:, i);
+    temp_img = reshape(temp_img, [28 28]);
+    temp_img = temp_img(5:24, 5:24);
+    temp_img = reshape(temp_img, [400, 1]);
+    Temp_train(:, i) = temp_img;
+end
+
+for i = 1: length(Truth)
+    temp_img = Testdata(:, i);
+    temp_img = reshape(temp_img, [28 28]);
+    temp_img = temp_img(5:24, 5:24);
+    temp_img = reshape(temp_img, [400, 1]);
+    Temp_test(:, i) = temp_img;
+end
+
+Train = Temp_train;
+Test = Temp_test;
 Label = Labels;
 
 %% HOG
-fprintf('HOG')
-tic
-Train = Hog_digit(Train,28,28)';
-Test = Hog_digit(Test,28,28)';
-toc
+% fprintf('HOG')
+% tic
+% Train = Hog_digit(Train,28,28)';
+% Test = Hog_digit(Test,28,28)';
+% toc
 %% PCA
 tic
 k = 40;
