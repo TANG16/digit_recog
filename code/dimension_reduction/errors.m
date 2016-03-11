@@ -11,13 +11,13 @@
 % axis off
 GroundTruth = Truth';
 eorigin = 1-size(find(predictlabel_origin~=GroundTruth))/1000
- e_lle = 1-size(find(predictlabel_lle~=GroundTruth))/1000
+e_lle = 1-size(find(predictlabel_lle~=GroundTruth))/1000
 epca = 1-size(find(predictlabel_pca~=GroundTruth))/1000
 epoly = 1-size(find(predictlabel_poly~=GroundTruth))/1000
 egau = 1-size(find(predictlabel_gaussian~=GroundTruth))/1000
 for i = 0:9
     eorigin_on(i+1,:) = 1-size(find(predictlabel_origin((i*100+1):(i+1)*100)~=GroundTruth((i*100+1):(i+1)*100)))/100
-     e_lle_on(i+1,:) = 1-size(find(predictlabel_lle((i*100+1):(i+1)*100)~=GroundTruth((i*100+1):(i+1)*100)))/100
+    e_lle_on(i+1,:) = 1-size(find(predictlabel_lle((i*100+1):(i+1)*100)~=GroundTruth((i*100+1):(i+1)*100)))/100
     epca_on(i+1,:) = 1-size(find(predictlabel_pca((i*100+1):(i+1)*100)~=GroundTruth((i*100+1):(i+1)*100)))/100
     epoly_on(i+1,:) = 1-size(find(predictlabel_poly((i*100+1):(i+1)*100)~=GroundTruth((i*100+1):(i+1)*100)))/100
     egau_on(i+1,:) = 1-size(find(predictlabel_gaussian((i*100+1):(i+1)*100)~=GroundTruth((i*100+1):(i+1)*100)))/100
