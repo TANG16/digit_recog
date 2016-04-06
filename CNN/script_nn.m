@@ -1,16 +1,18 @@
 function script_nn(outpath)
 
+
 %% DIGIT-RECOGNITION : NEURAL NETWORK
 
 filename = './MNIST/t10k-images-idx3-ubyte';
 
 
-[I,labels,I_test,labels_test] = readMNIST(60000); 
+[I,labels,I_test,labels_test] = readMNIST(600); 
 
 %% Neural Network Structure
 
 %Define the structure according to [2]
 %Total number of layers
+numLayers = 8; 
 %Number of subsampling layers
 numSLayers = 3; 
 %Number of convolutional layers
@@ -131,8 +133,8 @@ sinet.teta_dec = 0.4;
 
 %Images preprocessing. Resulting images have 0 mean and 1 standard
 %deviation. Go inside the preproc_data for details
-[Ip, labtrn] = preproc_data(I,60000,labels,0);
-[I_testp, labtst] = preproc_data(I_test,10000,labels_test,0);
+[Ip, labtrn] = preproc_data(I,600,labels,0);
+[I_testp, labtst] = preproc_data(I_test,100,labels_test,0);
 %Actualy training
 sinet = train(sinet,Ip,labtrn,I_testp,labtst);
 
