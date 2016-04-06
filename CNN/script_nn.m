@@ -8,7 +8,7 @@ clc; clear; close all;
 filename = './MNIST/t10k-images-idx3-ubyte';
 
 
-[I,labels,I_test,labels_test] = readMNIST(60000); 
+[I,labels,I_test,labels_test] = readMNIST(6000); 
 
 %% Neural Network Structure
 
@@ -135,8 +135,8 @@ sinet.teta_dec = 0.4;
 
 %Images preprocessing. Resulting images have 0 mean and 1 standard
 %deviation. Go inside the preproc_data for details
-[Ip, labtrn] = preproc_data(I,60000,labels,0);
-[I_testp, labtst] = preproc_data(I_test,10000,labels_test,0);
+[Ip, labtrn] = preproc_data(I,6000,labels,0);
+[I_testp, labtst] = preproc_data(I_test,1000,labels_test,0);
 %Actualy training
 sinet = train(sinet,Ip,labtrn,I_testp,labtst);
 
