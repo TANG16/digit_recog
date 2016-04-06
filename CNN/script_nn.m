@@ -1,8 +1,5 @@
 function script_nn(outpath)
 
-%% CLEAR ALL
-clc; clear; close all;
-
 %% DIGIT-RECOGNITION : NEURAL NETWORK
 
 filename = './MNIST/t10k-images-idx3-ubyte';
