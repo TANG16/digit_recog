@@ -4,11 +4,11 @@ clear all, close all
 % load data
 load ../data/MNIST.mat
 
-sigma = 2;
+sigma = 3;
 
 tic
-Train = prtDataSetClass(Train_images', Train_labels);
-Test = prtDataSetClass(Test_images', Test_labels);
+Train = prtDataGenUnimodal;
+Test = prtDataGenUnimodal;
 toc
 
 classifier = prtClassBinaryToMaryOneVsAll;
