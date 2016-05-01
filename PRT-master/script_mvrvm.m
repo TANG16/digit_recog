@@ -15,8 +15,7 @@ classifier = prtClassBinaryToMaryOneVsAll;
 classifier.baseClassifier = prtClassRvm;
 classifier.internalDecider = prtDecisionMap;
 
-kernel = prtKernelDirect;
-kernel = kernel.train(Train);
+kernel = prtKernelRbf('sigma', sigma);
 classifier.baseClassifier.kernels = kernel;
 classifier = classifier.train(Train);
 classified = run(classifier, Test);
