@@ -1,6 +1,7 @@
 function script_mvrvm(outpath)
 
 % load data
+prtPath;
 load ../data/MNIST.mat
 
 [~, I1] =sort(Train_labels);
