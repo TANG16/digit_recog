@@ -12,7 +12,7 @@ Label = Train_labels(I1);
 GroundTruth = Test_labels(I2);
 
 for i = 0:9
-Traindata(:, (i*60+1):(i*6000+60)) = Train(:, (i*6000+1):(i*6000+60));
+Traindata(:, (i*60+1):(i*60+60)) = Train(:, (i*6000+1):(i*6000+60));
 Testdata(:,(i*10+1):(i*10+10)) = Test(:, (i*1000+1):(i*1000+10));
 Labels((i*60+1):(i*60+60)) = Label((i*6000+1):(i*6000+60));
 Truth((i*10+1):(i*10+10)) = GroundTruth((i*1000+1):(i*1000+10));
