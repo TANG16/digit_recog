@@ -1,0 +1,20 @@
+\BOOKMARK [1][-]{section.1}{Problem Description}{}% 1
+\BOOKMARK [1][-]{section.2}{Data Description}{}% 2
+\BOOKMARK [1][-]{section.3}{Methods}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Preprocessing}{section.3}% 4
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Normalization}{subsection.3.1}% 5
+\BOOKMARK [3][-]{subsubsection.3.1.2}{Feature Extraction}{subsection.3.1}% 6
+\BOOKMARK [3][-]{subsubsection.3.1.3}{Dimension Reductions}{subsection.3.1}% 7
+\BOOKMARK [2][-]{subsection.3.2}{Classification}{section.3}% 8
+\BOOKMARK [3][-]{subsubsection.3.2.1}{k-NN Classifier}{subsection.3.2}% 9
+\BOOKMARK [3][-]{subsubsection.3.2.2}{SVM Classifier}{subsection.3.2}% 10
+\BOOKMARK [3][-]{subsubsection.3.2.3}{CNN Classifier}{subsection.3.2}% 11
+\BOOKMARK [1][-]{section.4}{Results}{}% 12
+\BOOKMARK [1][-]{section.5}{Results}{}% 13
+\BOOKMARK [2][-]{subsection.5.1}{k-NN classifier}{section.5}% 14
+\BOOKMARK [3][-]{subsubsection.5.1.1}{Comparison on Normalization}{subsection.5.1}% 15
+\BOOKMARK [3][-]{subsubsection.5.1.2}{Comparison on Feature Selection}{subsection.5.1}% 16
+\BOOKMARK [3][-]{subsubsection.5.1.3}{Comparison on Dimension Reduction Methods}{subsection.5.1}% 17
+\BOOKMARK [2][-]{subsection.5.2}{SVM classifier}{section.5}% 18
+\BOOKMARK [2][-]{subsection.5.3}{CNN classifier}{section.5}% 19
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 20

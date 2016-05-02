@@ -1,0 +1,108 @@
+\begin{thebibliography}{10}
+
+\bibitem{altman1992introduction}
+Naomi~S Altman.
+\newblock An introduction to kernel and nearest-neighbor nonparametric
+  regression.
+\newblock {\em The American Statistician}, 46(3):175--185, 1992.
+
+\bibitem{bottou1994comparison}
+L{\'e}on Bottou, Corinna Cortes, John~S Denker, Harris Drucker, Isabelle Guyon,
+  Lawrence~D Jackel, Yann LeCun, Urs~A Muller, Edward Sackinger, Patrice
+  Simard, et~al.
+\newblock Comparison of classifier methods: a case study in handwritten digit
+  recognition.
+\newblock In {\em International Conference on Pattern Recognition}, pages
+  77--77. IEEE Computer Society Press, 1994.
+
+\bibitem{ciresan2012multi}
+Dan Ciresan, Ueli Meier, and J{\"u}rgen Schmidhuber.
+\newblock Multi-column deep neural networks for image classification.
+\newblock In {\em Computer Vision and Pattern Recognition (CVPR), 2012 IEEE
+  Conference on}, pages 3642--3649. IEEE, 2012.
+
+\bibitem{cirecsan2011convolutional}
+Dan~Claudiu Cire{\c{s}}an, Ueli Meier, Luca~Maria Gambardella, and J{\"u}rgen
+  Schmidhuber.
+\newblock Convolutional neural network committees for handwritten character
+  classification.
+\newblock In {\em Document Analysis and Recognition (ICDAR), 2011 International
+  Conference on}, pages 1135--1139. IEEE, 2011.
+
+\bibitem{dalal2005histograms}
+Navneet Dalal and Bill Triggs.
+\newblock Histograms of oriented gradients for human detection.
+\newblock In {\em Computer Vision and Pattern Recognition, 2005. CVPR 2005.
+  IEEE Computer Society Conference on}, volume~1, pages 886--893. IEEE, 2005.
+
+\bibitem{felzenszwalb2010object}
+Pedro~F Felzenszwalb, Ross~B Girshick, David McAllester, and Deva Ramanan.
+\newblock Object detection with discriminatively trained part-based models.
+\newblock {\em Pattern Analysis and Machine Intelligence, IEEE Transactions
+  on}, 32(9):1627--1645, 2010.
+
+\bibitem{krizhevsky2012imagenet}
+Alex Krizhevsky, Ilya Sutskever, and Geoffrey~E Hinton.
+\newblock Imagenet classification with deep convolutional neural networks.
+\newblock In {\em Advances in neural information processing systems}, pages
+  1097--1105, 2012.
+
+\bibitem{le1990handwritten}
+B~Boser Le~Cun, John~S Denker, D~Henderson, Richard~E Howard, W~Hubbard, and
+  Lawrence~D Jackel.
+\newblock Handwritten digit recognition with a back-propagation network.
+\newblock In {\em Advances in neural information processing systems}. Citeseer,
+  1990.
+
+\bibitem{lecun1989backpropagation}
+Yann LeCun, Bernhard Boser, John~S Denker, Donnie Henderson, Richard~E Howard,
+  Wayne Hubbard, and Lawrence~D Jackel.
+\newblock Backpropagation applied to handwritten zip code recognition.
+\newblock {\em Neural computation}, 1(4):541--551, 1989.
+
+\bibitem{lecun1998gradient}
+Yann LeCun, L{\'e}on Bottou, Yoshua Bengio, and Patrick Haffner.
+\newblock Gradient-based learning applied to document recognition.
+\newblock {\em Proceedings of the IEEE}, 86(11):2278--2324, 1998.
+
+\bibitem{lecun1995comparison}
+Yann LeCun, LD~Jackel, L~Bottou, A~Brunot, C~Cortes, JS~Denker, H~Drucker,
+  I~Guyon, UA~Muller, E~Sackinger, et~al.
+\newblock Comparison of learning algorithms for handwritten digit recognition.
+\newblock In {\em International conference on artificial neural networks},
+  volume~60, pages 53--60, 1995.
+
+\bibitem{liu2003handwritten}
+Cheng-Lin Liu, Kazuki Nakashima, Hiroshi Sako, and Hiromichi Fujisawa.
+\newblock Handwritten digit recognition: benchmarking of state-of-the-art
+  techniques.
+\newblock {\em Pattern Recognition}, 36(10):2271--2285, 2003.
+
+\bibitem{lowe2004distinctive}
+David~G Lowe.
+\newblock Distinctive image features from scale-invariant keypoints.
+\newblock {\em International journal of computer vision}, 60(2):91--110, 2004.
+
+\bibitem{simard2003best}
+Patrice~Y Simard, Dave Steinkraus, and John~C Platt.
+\newblock Best practices for convolutional neural networks applied to visual
+  document analysis.
+\newblock In {\em null}, page 958. IEEE, 2003.
+
+\bibitem{soltanzadeh2004recognition}
+Hasan Soltanzadeh and Mohammad Rahmati.
+\newblock Recognition of persian handwritten digits using image profiles of
+  multiple orientations.
+\newblock {\em Pattern Recognition Letters}, 25(14):1569--1576, 2004.
+
+\bibitem{tipping2001sparse}
+Michael~E Tipping.
+\newblock Sparse bayesian learning and the relevance vector machine.
+\newblock {\em The journal of machine learning research}, 1:211--244, 2001.
+
+\bibitem{yilmaz2006object}
+Alper Yilmaz, Omar Javed, and Mubarak Shah.
+\newblock Object tracking: A survey.
+\newblock {\em Acm computing surveys (CSUR)}, 38(4):13, 2006.
+
+\end{thebibliography}

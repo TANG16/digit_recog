@@ -1,0 +1,57 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: final report.aux
+The style file: plain.bst
+Database file #1: references.bib
+Repeated entry---line 153 of file references.bib
+ : @article{lecun1998gradient
+ :                           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 203 of file references.bib
+ : @article{felzenszwalb2010object
+ :                                ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "cherer2010evaluation"
+Warning--I didn't find a database entry for "vedaldi15matconvnet"
+You've used 17 entries,
+            2118 wiz_defined-function locations,
+            616 strings with 7715 characters,
+and the built_in function-call counts, 7590 in all, are:
+= -- 757
+> -- 398
+< -- 9
++ -- 158
+- -- 140
+* -- 575
+:= -- 1208
+add.period$ -- 57
+call.type$ -- 17
+change.case$ -- 119
+chr.to.int$ -- 0
+cite$ -- 17
+duplicate$ -- 274
+empty$ -- 554
+format.name$ -- 140
+if$ -- 1610
+int.to.chr$ -- 0
+int.to.str$ -- 17
+missing$ -- 17
+newline$ -- 88
+num.names$ -- 34
+pop$ -- 125
+preamble$ -- 1
+purify$ -- 102
+quote$ -- 0
+skip$ -- 202
+stack$ -- 0
+substring$ -- 519
+swap$ -- 90
+text.length$ -- 9
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 68
+warning$ -- 0
+while$ -- 70
+width$ -- 19
+write$ -- 196
+(There were 2 error messages)
