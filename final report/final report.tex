@@ -66,7 +66,7 @@
 
 Digit recognition has been a wide-spread and high-impact pattern recognition task, due to its simplicity: the background and the foreground (digits) are often well-separated, and the classes (categories) are limited to 10 (10 digits). Many researchers have benchmarked different methods on those datasets. Y. LeCun et al.\cite{lecun1998gradient} extracted their Mixed National Institute of Standards and Technology (MNIST) dataset from the National Institute of Standards and Technology (NIST) dataset, and made it normalized and available on their webpage\footnote{\url{http://yann.lecun.com/exdb/mnist/}}; they also provided early works on different classifications configurations in 1995, where linear classifiers, $k$-NN classifiers, and multiple variations of neural networks are investigated; a more complicated and complete comparisons can be found on the same webpage. A more recent work by CL Liu et al.\cite{liu2003handwritten} benchmarked methods of wider range on multiple datasets, on both feature extraction methods and classification methods.
 
-What we are proposed is to further and more deeply investigate aspects of the digit recognition task. What we care about is how the different options in the classification pipeline affect the performance:
+What proposed is to further and more deeply investigate aspects of the digit recognition task. What we care about is how the different options in the classification pipeline affect the performance:
 \begin{inparaenum} [\itshape a\upshape)]
 \item How different normalization techniques influence the data quality, and how to provide a measurement (or at least, an intuition) on that;
 \item how SIFT \cite{lowe2004distinctive}, HOG \cite{dalal2005histograms} and other feature extraction methods perform on feature extraction/generation; 
@@ -74,7 +74,7 @@ What we are proposed is to further and more deeply investigate aspects of the di
 \item how the classifiers and the parameter setting affect the performance of the task.
 \end{inparaenum} 
 
-The problem of digit recognition is a simple image classification problem, and the techniques tested on the dataset can be extended to used in other image classification problems. The computer vision community has shown a consistent interest on the digit recognition, not only because the datasets have relatively small size to validate the assumptions, and to test the new techniques, but also because the task alone is a simplified version of optical character recognition (OCR), which is also worth researching in. 
+The problem of digit recognition is a simple image classification problem, and the techniques tested on the dataset can be extended to used in other image classification problems. The computer vision community has shown a consistent interest on the digit recognition, not only because the datasets have relatively small size to validate the assumptions, and to test the new techniques, but also because the task alone is a simplified version of optical character recognition (OCR), which is also worth researching. 
 
 
 \section{Data Description}
@@ -90,9 +90,9 @@ Some important information of the datasets are listed as follows:
 \item USPS: 7291 for training and 2007 for testing; each image has 256 pixels ($16 \times 16$).
 \end{enumerate}
 
-In this report, we only work on a subset of MNIST dataset, where 6000 digits as training sample, and another 1000 digits as testing data, in order to determine the pipeline. We will trying to extend that to the whole MNIST dataset plus the USPS dataset in the final report.
+In this final stage of our report, we have extended to work on the full set of MNIST dataset, that is, with 60000 digits as training samples, and 10000 digits as testing data. (In the 50\% report we trained and tested on a randomly sampled subset of MNIST, with 600 digits from each subject(0-9) for training, and 100 digits from each subject for testing). 
 
-All the training and testing samples are drawn respectively from the original training set and testing set. For training, we drawn 600 digits from each subject (0-9) randomly; 100 digits are drawn from each subject from the testing set to gather the subset of testing samples.
+All the training and testing samples are drawn respectively from the original training set and testing set. For training, we drew 600 digits from each subject (0-9) randomly; 100 digits are drawn from each subject from the testing set to gather the subset of testing samples.
 
 \begin{figure}[tbp]
 	\centering
@@ -135,11 +135,11 @@ The normalization process removes the size variation and brightness variation of
 Feature extraction/generation methods based on gradient and local invariant feature detectors are investigated. To be specific, in this report, we investigated two common feature extraction strategy in the Computer Vision society: a) HOG features and b) Scale-invariant feature transform (SIFT) features.
 
 \subsubsection*{HOG Features}
- Histograms of Oriented Gradients(HOG)\cite{dalal2005histograms}\cite{felzenszwalb2010object} is a feature extraction method based on detection of local gradient distributions. Not only detection of edge positions, but also intensity normalization is included in this method, making it invariant to the shadows or illumination difference of the sample image. A lot of HOG implementations are proposed, with different parameter and slightly differently designed histogram calculating schemes. In this project, we will focus mainly on a Felzenszwalb et al.\cite{felzenszwalb2010object} version of HOG, for its relatively fewer features in selecting, as we only care about the distinguish from 0 to 9 in handwritten digits recognition, and too many features could be disturbing.
+ Histograms of Oriented Gradients(HOG)\cite{dalal2005histograms}\cite{felzenszwalb2010object} is a feature extraction method based on detection of local gradient distributions. Not only detection of edge positions, but also intensity normalization is included in this method, making it invariant to the shadows or illumination difference of the sample image. A lot of HOG implementations are proposed, with different parameter and slightly differently designed histogram calculating schemes. In this project, we will focus mainly on a Felzenszwalb et al.\cite{felzenszwalb2010object} version of HOG, for its relatively fewer features in selecting, as we only care about the distinguish from 0 to 9 in handwritten digits recognition, and too many features could result in a input whose dimension is too large for the following classifier.
 
 First, in order to identify the local edge orientation and intensity, the finite difference filter $[-1,0,1]$ and its transpose, are applied to the image to calculate its gradient in 2 directions, the resulting gradient image is then divided into cells of $4\time4$. In each cell, a histogram of the gradient orientation is created by dividing the orientations $\theta$ of the gradient evenly into 9 bins, and each vote has the weight of $r$(i.e. the magnitude of the coordinate pixel). Therefore, for a $ w\times h$ image,  a $w/4 \times h/4 \times 9$ cell feature map $C$ is created. 
 
-Then, in order to achieve an invariance to local gradient bias, for each elements of the feature map $C(i,j,:)$, we normalized it together with its 8-neighbor elements and create a $4\times 9$ matrix.
+Then, in order to achieve an invariance to local gradient bias, for each element of the feature map $C(i,j,:)$, we normalized it together with its 8-neighbor elements and create a $4\times 9$ matrix.
 \begin{equation}
 \begin{aligned}
 HOG(i,j,:,:) =&  \left[\begin{array}{c}
@@ -168,7 +168,7 @@ Finally, the now normalized feature map is compressed to 31 features per cell, u
 	\label{fig:hog}
 	\end{figure}
 
-The original images, and the HOG features of digits from 0 to 9 is shown in Figure \ref{fig:hog}(a) and Figure \ref{fig:hog}(b) respectively. As shown in the figures, the HOG features well describe the outlines of the digits. A digit written with a thinner line( such as the '9' in Figure 1) does not make much difference in the HOG feature description with digits written with thicker strokes, making the features resistant to the irrelevant factors.
+The original images, and the HOG features of digits from 0 to 9 are shown in Figure \ref{fig:hog}(a) and Figure \ref{fig:hog}(b), respectively. As shown in the figures, the HOG features well describe the outlines of the digits. A digit written with a thinner line( such as the '9' in Figure 1) does not make much difference in the HOG feature description with digits written with thicker strokes, making the features resistant to the irrelevant factors.
 \subsubsection*{SIFT Features}
  
 Scale-invariant feature transform is a popular feature extraction technique introduced by David Lowe in his 2004 paper \cite{lowe2004distinctive}. The process consists of typically three steps: a) Detection of scale-space extrema, where image pyramid is generated using a set of different-scaled Gaussian kernels, and the extrema is detected in a spatial-hierarchical neighborhood; b) Accurate keypoint localization, where the extrema of low contrast and extrema near the image boundary are discarded; c) Orientation assignment, where each keypoint is assigned several orientations according to its spatial neighbors.
@@ -203,11 +203,11 @@ The dimension reduction methods used in this report can be categorized into 2 gr
 After the preprocessing, we plan to investigate clustering methods on the new feature space. The clustering methods such as $k$-means, EM and density-based spatial clustering of applications with noise (DBSCAN) will be investigated to show the intrinsic nature of the dataset, and will be used as references to justify and validate the supervised classification results. This part is to be discussed in the final report.
 
 \subsection{Classification}
-Three different classification methods are used is the report. $k$-NN classifier is used for investigating the dimension reduction methods; several experimental comparisons based on $k$-NN classifiers are conducted to highlight the difference of the performance, and to give a clue about what are the desirable preprocessing methods for digit recognition tasks. The SVM classifiers are reported as desirable classifiers of the task because of its high-accuracy, flexibility in its kernel choices, and also low-computational complexity \cite{soltanzadeh2004recognition, bottou1994comparison, liu2003handwritten}; on the other hand, the SVM classifiers are sensitive to kernel choice, and in terms of feature transformation, the ``kernel tricks'' that we used in the dimension reduction methods are already transformed the feature space according to the kernels, and it might not be desirable to use the kernels a second time. In early literature, neural networks are proposed to solve the problem of handwritten digits recognition, and the accuracies are comparable to SVM classifiers \cite{le1990handwritten, lecun1995comparison} despite its high computational cost in training process. In recent years, the trend of deep learning brings back convolutional neural network (CNN), and the state-of-art results are obtained by CNNs \cite{cirecsan2011convolutional, ciresan2012multi}.
+Three different classification methods are used in this report. $k$-NN\cite{altman1992introduction} classifier is used for investigating the dimension reduction methods; several experimental comparisons based on $k$-NN classifiers are conducted to highlight the difference of the performance, and to give a clue about what are the desirable preprocessing methods for digit recognition tasks. The SVM classifiers are reported as desirable classifiers of the task because of its high-accuracy, flexibility in its kernel choices, and also low-computational complexity \cite{soltanzadeh2004recognition, bottou1994comparison, liu2003handwritten}; on the other hand, the SVM classifiers are sensitive to kernel choice, and in terms of feature transformation, the ``kernel tricks'' that we used in the dimension reduction methods are already transformed the feature space according to the kernels, and it might not be desirable to use the kernels a second time. In early literature, neural networks are proposed to solve the problem of handwritten digits recognition, and the accuracies are comparable to SVM classifiers \cite{le1990handwritten, lecun1995comparison} despite its high computational cost in training process. In recent years, the trend of deep learning brings back convolutional neural network (CNN), and the state-of-art results are obtained by CNNs \cite{krizhevsky2012imagenet,cirecsan2011convolutional, ciresan2012multi}.
 
 \subsubsection{$k$-NN Classifier}
 
-The $k$-NN Classifier we used in the project is based on euclidean distance ($l2$-norm), such that for any two feature vectors $\mathbf{x}$ and $\mathbf{y}$, the distance between are defined as
+The $k$-NN\cite{altman1992introduction} Classifier we used in the project is based on euclidean distance ($l2$-norm), such that for any two feature vectors $\mathbf{x}$ and $\mathbf{y}$, the distance between are defined as
 \begin{equation}
 	d({\bf x}, {\bf y}) = \|{\bf x} - {\bf y}\|_2^2
 \end{equation}
@@ -231,7 +231,7 @@ Thus we have a total of $2 \times 2 \times 4 = 16$ different classification inst
 
 \subsubsection{SVM Classifier}
 
-Support vector machine (SVM) finds the hyperplane that best seperates the two classes in the high-dimensional space. According to representer theorem, the solution of the optimization problem can be expressed in another space by a linear combination of inner products defined in that space. That is, the ``kernel trick'' allows us to tranform the feature space into another Rreproducing Kernel Hilbert Space (RKHS), and hence find the nonlinear boundary between the classes in the original feature space. The performances of the SVM classifiers are sensetive to the kernel types and parameters.
+Support vector machine (SVM)\cite{le1990handwritten, lecun1995comparison} finds the hyperplane that best seperates the two classes in the high-dimensional space. According to representer theorem, the solution of the optimization problem can be expressed in another space by a linear combination of inner products defined in that space. That is, the ``kernel trick'' allows us to tranform the feature space into another Rreproducing Kernel Hilbert Space (RKHS), and hence find the nonlinear boundary between the classes in the original feature space. The performances of the SVM classifiers are sensetive to the kernel types and parameters.
 
 In this report, we investigate 3 different kernel of SVM classifiers in this report: linear kernel, polynomial kernel, and radial basis function (rbf) kernel. For the polynomial kernel, we tried different values of degree $d$, where $d \in \{2,3,5,7\}$; for rbf kernel, we tried the standard deviation $\sigma \in \{3, 4, 5, 7\}$. As mentioned before, the SVM classifiers transformed the features by theirselves according to the kernels, and thus the classification pipeline with SVM classifier is shown in Figure \ref{fig:pipeline-svm}.
 
@@ -253,7 +253,7 @@ The organization of CNN is built in the following steps:
 3. Down-sample the images with stripe s, the output of this layer is built up with the resulting m $(n-r+1)/s \times (n-r+1)/s$ images;
 \subsubsection{Preprocessing}
 
-In order to fit the input image in the overall architecture of the convolutional networks, each $28\times 28$ input image is put in a all-zero matrix of $32\times 32$(details in the following section).
+In order to fit the input image in the overall architecture of the convolutional networks, each $28\times 28$ input image is put in an all-zero matrix of $32\times 32$(details in the following section).
 
 \subsubsection{Overall Architecture}
 
@@ -293,7 +293,7 @@ In this section, we discuss the differences of the performances of the classifie
 
 \begin{table}[]
 \centering
-\caption{Accuracy and running time of classification pipeline with $k$-NN classifier}
+\caption{Accuracy and running time of classification pipeline with $k$-NN classifier on average}
 \label{tab:knn}
 \resizebox{0.95\textwidth}{!}
 {
@@ -318,7 +318,7 @@ In this section, we discuss the differences of the performances of the classifie
 As can be seen in Table \ref{tab:knn}, both the HOG feature extraction and normalization process raise the performance of classification; however, the normalization process with HOG feature extraction does not always outperform the pipeline with HOG features alone regrading the overall accuracy, but at the same time, the running time of the former are always less than the latter, which demonstrates that the computational complexity is reduced. 
 
 \subsubsection{Comparison on Feature Selection}
-As can be seen in Table \ref{tab:knn}, basically a increase of accuracy of 4\% to 7\% is achieved by selecting HOG features. Better edge detection and shadow invariant property of the HOG features might contribute to this increase. The increase is especially large in the case of none dimension reduction ( 7.6\% ) as the classification performance is more dependent to the feature quality with no further dimension reduction step.
+As can be seen in Table \ref{tab:knn}, basically a increase of accuracy of 4\% to 7\% is achieved by selecting HOG features. Better edge detection and shadow invariant property of the HOG features might contribute to this increase. The increase is especially large in the case of no dimension reduction ( 7.6\% ) as the classification performance is more dependent to the feature quality with no further dimension reduction step.
 The running time is longer with feature selection, as the original dimension of the data is 784, and the selected feature dimension here is 775, so there is no much decrease in the dimension reduction process, and the increase in computational complexity comes from the HOG feature detection step. This increase, however, is minor (less then 10 percent) compared to the accuracy improvement.
 
 \subsubsection{Comparison on Dimension Reduction Methods}
@@ -337,7 +337,7 @@ As we can see in Figure \ref{fig:knn} and Table \ref{tab:knn}, we can seen that 
 
 \subsection{SVM classifier}
 
-SVM classifier are also investigated in this report, we apply the SVM classifier on the HOG features. The reason that we do not use the SVM on the dimension reduction is that the kernel of SVM itself already transformed the feature space.
+SVM classifier is also investigated in this report, we apply the SVM classifier on the HOG features. The reason that we do not use the SVM on the dimension reduction is that the kernel of SVM itself already transformed the feature space.
 
 The overall accuracy of the linear-kernel based SVM is 96.80\%, which is comparable to the best result before with the $k$-NN classifier.
 
