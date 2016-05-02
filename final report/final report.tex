@@ -49,7 +49,7 @@
 \bigskip
 
 \begin{nscenter}
-\textbf{\Large{A Comparison of Classifications in Handwritten Digit Recognition -- 50 \% Report}}
+\textbf{\Large{A Comparison of Classifications in Handwritten Digit Recognition -- Final Report}}
 \end{nscenter}
 
 \bigskip
@@ -79,32 +79,19 @@ The problem of digit recognition is a simple image classification problem, and t
 
 \section{Data Description}
 \label{sec:data}
-The data we used are from 2 different digit dataset, which are both well-known and widely-used for digit recognition:\begin{enumerate}[\itshape a\upshape)]
-\item MNIST data\cite{lecun1998gradient}, which is the most-popular dataset for the task, all data are normalized beforehand -- by bounding-box normalization and centering;
-\item USPS handwritten digits data\cite{hull1994database}, where the data was not normalized, and the testing data is harder than the training data, because the testing data have more variations of digits shapes.
-\end{enumerate}
+The data we used is MNIST dataset\cite{lecun1998gradient}, which is well-known and widely-used for digit recognition. All data are normalized beforehand -- by bounding-box normalization and centering;
 
-Some important information of the datasets are listed as follows:
-\begin{enumerate}[\itshape a\upshape)]
+Some important information of the datasets is listed as follows:
+\begin{itemize}
 \item MNIST: Total training set of 60,000 images; test set of 10,000 images; all the digits are normalized to size $20 \times 20$ and put in the middle of a $28 \times 28$ image.
-\item USPS: 7291 for training and 2007 for testing; each image has 256 pixels ($16 \times 16$).
-\end{enumerate}
+\end{itemize}
 
 In this final stage of our report, we have extended to work on the full set of MNIST dataset, that is, with 60000 digits as training samples, and 10000 digits as testing data. (In the 50\% report we trained and tested on a randomly sampled subset of MNIST, with 600 digits from each subject(0-9) for training, and 100 digits from each subject for testing). 
 
-All the training and testing samples are drawn respectively from the original training set and testing set. For training, we drew 600 digits from each subject (0-9) randomly; 100 digits are drawn from each subject from the testing set to gather the subset of testing samples.
-
 \begin{figure}[tbp]
 	\centering
-	\begin{subfigure}{.45\textwidth}
-		\includegraphics[height = 1.3in]{MNIST}		
-		\caption{ }
-	\end{subfigure}
-	\begin{subfigure}{.45\textwidth}
-		\includegraphics[height = 1.3in]{USPS}		
-		\caption{ }
-	\end{subfigure}
-	\caption{Datasets: (a)~MNIST (b)~USPS}
+	\includegraphics[height = 1.3in]{MNIST}		
+	\caption{Digits from MNIST Dataset}
 \end{figure}
 
 \section{Methods}
@@ -198,10 +185,6 @@ However, for further study, if we are to investigate faces, SIFT would be a good
  
 The dimension reduction methods used in this report can be categorized into 2 groups: linear and nonlinear. For linear method, we apply the conventional PCA; both kernel method (Kernel-PCA) and manifold learning method (LLE) are investigated as nonlinear methods. Experiments are conducted to compare the effectiveness and efficiency of the methods.
 
- 
-\subsection{Clustering}
-After the preprocessing, we plan to investigate clustering methods on the new feature space. The clustering methods such as $k$-means, EM and density-based spatial clustering of applications with noise (DBSCAN) will be investigated to show the intrinsic nature of the dataset, and will be used as references to justify and validate the supervised classification results. This part is to be discussed in the final report.
-
 \subsection{Classification}
 Three different classification methods are used in this report. $k$-NN\cite{altman1992introduction} classifier is used for investigating the dimension reduction methods; several experimental comparisons based on $k$-NN classifiers are conducted to highlight the difference of the performance, and to give a clue about what are the desirable preprocessing methods for digit recognition tasks. The SVM classifiers are reported as desirable classifiers of the task because of its high-accuracy, flexibility in its kernel choices, and also low-computational complexity \cite{soltanzadeh2004recognition, bottou1994comparison, liu2003handwritten}; on the other hand, the SVM classifiers are sensitive to kernel choice, and in terms of feature transformation, the ``kernel tricks'' that we used in the dimension reduction methods are already transformed the feature space according to the kernels, and it might not be desirable to use the kernels a second time. In early literature, neural networks are proposed to solve the problem of handwritten digits recognition, and the accuracies are comparable to SVM classifiers \cite{le1990handwritten, lecun1995comparison} despite its high computational cost in training process. In recent years, the trend of deep learning brings back convolutional neural network (CNN), and the state-of-art results are obtained by CNNs \cite{krizhevsky2012imagenet,cirecsan2011convolutional, ciresan2012multi}.
 
@@ -261,7 +244,14 @@ As shown in Figure \ref{fig:arch}, our neural network is built up of 3 layers of
 
 \begin{figure}[tbp]
 	\centering
-	\includegraphics[width =\textwidth]{cnn}		
+	\includegraphics[width =0.65\textwidth]{cnn_arch}		
+	\caption{The architecture of CNN}
+	\label{fig:arch}
+\end{figure}
+
+\begin{figure}[tbp]
+	\centering
+	\includegraphics[width = 0.65\textwidth]{cnn}		
 	\caption{The architecture of CNN}
 	\label{fig:arch}
 \end{figure}
@@ -364,11 +354,19 @@ With the rbf kernel, the accuracy also change with different parameter $\sigma$,
 
 The overall accuracy of CNN classifier is 93\%, which is below the overall accuracy of both $k$-NN classifiers with dimension reduction and SVM classifiers. However, this is expected because the CNN requires a huge size of training samples to determine the weights, and we are planning to investigate on the elastic and affine distortions that are introduced in the literature \cite{cirecsan2011convolutional, ciresan2012multi} to enlarge the dataset in the future.
 
-\section{Next Steps}
+\section{Conclusion}
 \begin{itemize}
-	\item Investigate the clustering (unsupervised learning) methods on digits recognition
-	\item Test on the convolutional neural network to find a optimal set of parameters
-	\item Investigate the ``elastic distortion'' methods to enlarge the dataset for CNN
+	\item Preprocessing:
+	\begin{itemize}
+		\item HOG feature: the HOG feature utilized the higher-order information of the feature vector (gradients), which added discrimination between the classes. However, the HOG feature has a higher dimensionality than the original features, thus may increase the computational complexity of the classification step.
+		\item SIFT feature: the SIFT descriptor is based on topology, and has a rotation invariant property, thus may not be suitable for digit recognition. Moreover, the number of descriptors found in the each image (feature vector) may not be the same, which complicated the further classification task, where the dimensionality of the feature varies.
+	\end{itemize}
+	\item Classifiers:
+	\begin{itemize}
+		\item Dimension reduction with $k$-NN: the dimension reduction methods explicitly transform the feature space. This method has a simple algorithm structure, but has a relatively high error rate. In the experimental comparison of the dimension reduction methods, Locally Linear Embedding (LLE) has the highest accuracy and relatively low computational complexity, thus is suitable for the digit recognition task.
+		\item Support Vector Machine (SVM): SVM has a fast training process and a relatively high accuracy. However, this classifier is sensitive to kernel choice, thus need prior knowledge of the dataset.
+		\item Convolutional Neural Network (CNN): the CNN renders the highest accuracy both in the literature and in our report. In the literature, the best single CNN has reached a 99.65\% accuracy. In our experiments, the accuracy is 99.18\%. Another strength of CNN is that is requires less preprocessing, where the convolution layers can be seen as feature extraction steps. CNN is a model-based method, thus once the coefficients are determined by the training process, the testing process will be a lot more time-efficient. However, the CNN tend to overfit the data, thus need a large training set, and the training process is time-consuming.
+	\end{itemize}
 \end{itemize}
 
 \bibliographystyle{plain}
