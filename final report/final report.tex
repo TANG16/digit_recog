@@ -224,6 +224,8 @@ In this report, we investigate 3 different kernel of SVM classifiers in this rep
 	\caption{The classification pipeline with SVM classifier}
 	\label{fig:pipeline-svm}
 \end{figure}
+
+A somewhat related method called relevance support machine (RVM) \cite{tipping2001sparse} is also investigated. RVM has the same function form as SVM, but generally need much more data and tend to get local minima, because it is based on EM methods. On the subsampled training set and testing set (6000 training samples and 1000 testing samples), RVM does not provide better generalization than SVM (87\% OA compared to 93\% OA). It also has higher computational cost compared to SVM, and we therefore were not able to run the RVM on the whole dataset.
  
 \subsubsection{CNN Classifier}
 Convolutional Neural Networks(CNN)\cite{krizhevsky2012imagenet}, which intuitively pulls its layers within the receptive fields of each units, just like extracting features from lower to higher levels. This hierarchy enables CNN to capture the overall topological properties of the objects more easily and improves the performance of recognition incredibly\cite{lecun1998gradient}.
@@ -378,9 +380,11 @@ The overall accuracy of CNN classifier is 93\%, which is below the overall accur
 \Large{Tiancheng's contribution}
 \end{nscenter}
 \begin{itemize}
-\item Investigate the literature of SVM classifiers on digit recognition
-\item Write the functions and scripts for SVM classifier
-\item Rewrite the scripts for normalization methods to make the feature vectors zero-mean and standard deviation of 1.
+\item Investigate the SIFT feature extraction techniques 
+\item Investigate the SVM classifiers on digit recognition
+\item Investigate the RVM classifier on a sub-sampled dataset
+\item Extend the experiments before to applying on the whole dataset
+\item Help investigate the literature of CNN to build a new CNN architecture
 \end{itemize}
 
 \newpage
